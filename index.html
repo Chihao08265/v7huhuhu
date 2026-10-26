@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CÔNG THỨC CHIHABCR - MASTER</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            background: linear-gradient(135deg, #090d16 0%, #111827 100%);
+            color: #f8fafc;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+        /* Watermark góc trên */
+        .watermark {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 0.75rem;
+            color: #38bdf8;
+            font-weight: bold;
+            background: rgba(15, 23, 42, 0.8);
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid #38bdf8;
+            letter-spacing: 1px;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+        }
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: #111827;
+            border: 2px solid #0284c7;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.9), 0 0 20px rgba(2, 132, 199, 0.2);
+            position: relative;
+        }
+        h2 {
+            text-align: center;
+            color: #38bdf8;
+            margin: 0 0 5px 0;
+            font-size: 1.4rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            letter-spacing: 0.5px;
+        }
+        .sub-title {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.75rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .step-desc {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .welcome-banner {
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid #38bdf8;
+            color: #38bdf8;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .history-input-grid {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .btn-choice {
+            flex: 1;
+            padding: 14px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: transform 0.1s;
+        }
+        .btn-choice:active { transform: scale(0.95); }
+        .bg-p { background-color: #2563eb; }
+        .bg-b { background-color: #dc2626; }
+        .bg-t { background-color: #16a34a; }
+        
+        .setup-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 20px;
+            min-height: 45px;
+            background: #1f2937;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #374151;
+        }
+        .history-badge {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Bảng cầu hiển thị trực quan */
+        .live-road-panel {
+            background: #1f2937;
+            border: 1px solid #374151;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .live-road-title {
+            font-size: 0.75rem;
+            color: #38bdf8;
+            margin-bottom: 6px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+        .live-road-flex {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            flex-wrap: wrap;
+            min-height: 32px;
+            align-items: center;
+        }
+        .road-badge {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.75rem;
+            color: white;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        .input-field {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            text-align: center;
+            font-weight: bold;
+        }
+        input {
+            padding: 12px;
+            background: #1f2937;
+            border: 1px solid #4b5563;
+            color: #fff;
+            border-radius: 8px;
+            font-size: 1.4rem;
+            text-align: center;
+            width: 100%;
+        }
+        input:focus {
+            border-color: #38bdf8;
+            outline: none;
+            box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+        }
+        .btn-predict {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            border: none;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(2, 132, 199, 0.4);
+            transition: transform 0.1s;
+        }
+        .btn-predict:active { transform: scale(0.98); }
+        .btn-predict:disabled {
+            background: #4b5563;
+            color: #9ca3af;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        .result-box {
+            background: #1f2937;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #374151;
+            display: none;
+        }
+        
+        /* THANH LOADING 0-100% SANG TRỌNG */
+        .loading-container {
+            text-align: center;
+            padding: 15px 0;
+        }
+        .loading-title {
+            font-size: 0.85rem;
+            color: #38bdf8;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .progress-bar-bg {
+            width: 100%;
+            height: 10px;
+            background: #0f172a;
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid #374151;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #0284c7, #38bdf8);
+            border-radius: 5px;
+            transition: width 0.1s linear;
+        }
+        .progress-text {
+            font-size: 0.9rem;
+            color: #fbbf24;
+            font-weight: bold;
+            margin-top: 6px;
+        }
+
+        .result-item {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        .trend-banner {
+            background: #111827;
+            border-left: 4px solid #fbbf24;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: #fbbf24;
+        }
+
+        .ai-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .ai-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #111827;
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid #374151;
+        }
+        .ai-name {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+        .ai-choice {
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .bg-p-badge { background-color: #2563eb; }
+        .bg-b-badge { background-color: #dc2626; }
+        .bg-low-badge { background-color: #4b5563; opacity: 0.85; }
+
+        /* Sync Tab Panel */
+        .sync-panel {
+            margin-top: 15px;
+            background: #111827;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px dashed #fbbf24;
+            text-align: center;
+        }
+        .sync-title {
+            font-size: 0.75rem;
+            color: #fbbf24;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .sync-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        .sync-btn {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            color: #fff;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .btn-reset {
+            background: transparent;
+            border: 1px solid #4b5563;
+            color: #9ca3af;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+
+<div class="watermark">chihaobcr</div>
+
+<div class="container">
+    <h2>CÔNG THỨC CHIHABCR</h2>
+    <div class="sub-title">[ HỆ THỐNG XÁC THỰC BẢO MẬT ]</div>
+
+    <!-- PHẦN 0: NHẬP KEY BẢO MẬT -->
+    <div id="keySection">
+        <div class="step-desc">Vui lòng nhập <strong>Key bản quyền</strong> để truy cập hệ thống:</div>
+        <div class="input-field" style="margin-bottom: 15px;">
+            <input type="password" id="keyInput" placeholder="Nhập key..." style="font-size: 1.1rem; letter-spacing: 2px;">
+        </div>
+        <button type="button" class="btn-predict" onclick="verifyKey()">Kích Hoạt Truy Cập</button>
+    </div>
+
+    <!-- PHẦN 1: NHẬP 5 VÁN LỊCH SỬ BAN ĐẦU -->
+    <div id="setupSection" style="display: none;">
+        <div class="welcome-banner" id="welcomeBanner"></div>
+        <div class="step-desc" id="setupStepText">Vui lòng chọn kết quả <strong>Ván thứ 1/5</strong> gần nhất:</div>
+        <div class="setup-list" id="setupList">
+            <span style="color:#9ca3af; font-size:0.85rem; line-height:36px;">Chưa nhập ván nào...</span>
+        </div>
+        <div class="history-input-grid">
+            <button type="button" class="btn-choice bg-p" onclick="addSetupHistory('P')">PLAYER (P)</button>
+            <button type="button" class="btn-choice bg-b" onclick="addSetupHistory('B')">BANKER (B)</button>
+            <button type="button" class="btn-choice bg-t" onclick="addSetupHistory('T')">TIE (T)</button>
+        </div>
+        <button type="button" class="btn-reset" onclick="resetSetup()" style="width:100%;">Làm lại từ đầu</button>
+    </div>
+
+    <!-- PHẦN 2: MÀN HÌNH CHƠI CHÍNH -->
+    <div id="gameSection" style="display: none;">
+        <div style="margin-bottom: 12px; overflow: hidden;">
+            <span style="font-size: 0.8rem; color: #38bdf8;">✓ Đã đồng bộ lịch sử</span>
+            <button type="button" class="btn-reset" onclick="resetSetup()">Cài lại lịch sử</button>
+        </div>
+
+        <!-- BẢNG CẦU TRỰC QUAN PHÍA TRÊN -->
+        <div class="live-road-panel">
+            <div class="live-road-title">📈 BẢNG CẦU GẦN NHẤT (ĐỒNG BỘ LIÊN TỤC)</div>
+            <div class="live-road-flex" id="liveRoadContainer"></div>
+        </div>
+
+        <div class="input-group">
+            <div class="input-field">
+                <label style="color: #60a5fa;">Điểm Player</label>
+                <input type="number" id="pScore" pattern="[0-9]*" inputmode="numeric" placeholder="0-9">
+            </div>
+            <div class="input-field">
+                <label style="color: #f87171;">Điểm Banker</label>
+                <input type="number" id="bScore" pattern="[0-9]*" inputmode="numeric" placeholder="0-9">
+            </div>
+        </div>
+
+        <button type="button" class="btn-predict" id="predictBtn">Phân Tích Dự Đoán Siêu Tốc</button>
+
+        <div class="result-box" id="resultBox">
+            <!-- THANH LOADING 0-100% -->
+            <div id="loadingView" class="loading-container" style="display: none;">
+                <div class="loading-title">⚡ Đang đồng bộ sóng nhịp bàn & phân tích AI...</div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progressBarFill"></div>
+                </div>
+                <div class="progress-text" id="progressText">0%</div>
+            </div>
+
+            <div id="contentView" style="display: none;">
+                <div class="result-item" id="roundResult">Kết quả ván này: -</div>
+                
+                <!-- Bảng báo cáo trạng thái bàn -->
+                <div class="trend-banner" id="tableTrendBanner">Đang phân tích nhịp bàn...</div>
+
+                <!-- Bảng dự đoán từ 3 AI -->
+                <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 6px; font-weight: bold;">HỘI ĐỒNG 3 AI (TỐI ƯU ĐỘ CHUẨN XÁC):</div>
+                <div class="ai-grid" id="aiGridContainer"></div>
+
+                <!-- TAB ĐỒNG BỘ KẾT QUẢ THỰC TẾ VÁN VỪA RỒI -->
+                <div class="sync-panel">
+                    <div class="sync-title">⚓ XÁC NHẬN KẾT QUẢ THỰC TẾ ĐỂ ĐỒNG BỘ VÁN SAU:</div>
+                    <div class="sync-buttons">
+                        <button class="sync-btn bg-p" onclick="syncActualResult('P')">PLAYER (P)</button>
+                        <button class="sync-btn bg-b" onclick="syncActualResult('B')">BANKER (B)</button>
+                        <button class="sync-btn bg-t" onclick="syncActualResult('T')">TIE (T)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Âm thanh gõ phím cơ êm tai (Web Audio API)
+    function playKeyClickSound() {
+        try {
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.04);
+            gainNode.gain.setValueAtTime(0.08, audioCtx.currentTime);
+            gainNode.gain.linearRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
+            osc.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.04);
+        } catch(e) {}
+    }
+
+    // Xử lý xác thực Key
+    function verifyKey() {
+        playKeyClickSound();
+        const enteredKey = document.getElementById('keyInput').value.trim();
+        if (enteredKey === "tu1toimuoi") {
+            document.getElementById('keySection').style.display = 'none';
+            document.getElementById('setupSection').style.display = 'block';
+            document.getElementById('welcomeBannerinnerHTML') || (document.getElementById('welcomeBanner').innerHTML = "⚡ Chào mừng ông chủ trở lại! Hệ thống CÔNG THỨC CHIHABCR đã sẵn sàng.");
+        } else {
+            alert("Key không chính xác! Vui lòng nhập lại đúng key bản quyền.");
+        }
+    }
+
+    let globalHistory = [];
+
+    function addSetupHistory(val) {
+        playKeyClickSound();
+        if (globalHistory.length < 5) {
+            globalHistory.push(val);
+            updateSetupUI();
+        }
+        if (globalHistory.length === 5) {
+            document.getElementById('setupSection').style.display = 'none';
+            document.getElementById('gameSection').style.display = 'block';
+            updateLiveRoad();
+            document.getElementById('pScore').focus();
+        }
+    }
+
+    function updateSetupUI() {
+        const setupList = document.getElementById('setupList');
+        const setupStepText = document.getElementById('setupStepText');
+        
+        setupStepText.innerHTML = `Vui lòng chọn kết quả <strong>Ván thứ ${globalHistory.length + 1}/5</strong> gần nhất:`;
+        
+        setupList.innerHTML = '';
+        globalHistory.forEach((item) => {
+            const badge = document.createElement('div');
+            badge.className = `history-badge bg-${item.toLowerCase()}`;
+            badge.textContent = item;
+            setupList.appendChild(badge);
+        });
+
+        for (let i = globalHistory.length; i < 5; i++) {
+            const placeholder = document.createElement('div');
+            placeholder.style.width = '36px';
+            placeholder.style.height = '36px';
+            placeholder.style.borderRadius = '50%';
+            placeholder.style.border = '2px dashed #4b5563';
+            setupList.appendChild(placeholder);
+        }
+    }
+
+    function updateLiveRoad() {
+        const liveRoadContainer = document.getElementById('liveRoadContainer');
+        liveRoadContainer.innerHTML = '';
+        let displayRoad = globalHistory.slice(-10);
+        displayRoad.forEach(item => {
+            const badge = document.createElement('div');
+            badge.className = `road-badge bg-${item.toLowerCase()}`;
+            badge.textContent = item;
+            liveRoadContainer.appendChild(badge);
+        });
+    }
+
+    function resetSetup() {
+        playKeyClickSound();
+        globalHistory = [];
+        document.getElementById('setupSection').style.display = 'block';
+        document.getElementById('gameSection').style.display = 'none';
+        document.getElementById('resultBox').style.display = 'none';
+        updateSetupUI();
+    }
+
+    const pInput = document.getElementById('pScore');
+    const bInput = document.getElementById('bScore');
+    const predictBtn = document.getElementById('predictBtn');
+    const resultBox = document.getElementById('resultBox');
+    const loadingView = document.getElementById('loadingView');
+    const contentView = document.getElementById('contentView');
+    const progressBarFill = document.getElementById('progressBarFill');
+    const progressText = document.getElementById('progressText');
+
+    const roundResult = document.getElementById('roundResult');
+    const tableTrendBanner = document.getElementById('tableTrendBanner');
+    const aiGridContainer = document.getElementById('aiGridContainer');
+
+    function startPrediction() {
+        playKeyClickSound();
+        const pVal = pInput.value.trim();
+        const bVal = bInput.value.trim();
+
+        if (pVal === "" || bVal === "") {
+            alert("Vui lòng nhập đủ điểm cho cả 2 bên!");
+            return;
+        }
+
+        const p = parseInt(pVal, 10);
+        const b = parseInt(bVal, 10);
+
+        if (isNaN(p) || isNaN(b) || p < 0 || p > 9 || b < 0 || b > 9) {
+            alert("Điểm số phải nằm trong khoảng từ 0 đến 9!");
+            return;
+        }
+
+        predictBtn.disabled = true;
+        resultBox.style.display = 'block';
+        loadingView.style.display = 'block';
+        contentView.style.display = 'none';
+
+        // Chạy thanh loading từ 0 đến 100% trong đúng 3 giây (3000ms)
+        let currentPercent = 0;
+        progressBarFill.style.width = '0%';
+        progressText.textContent = '0%';
+
+        const intervalTime = 30; // Cập nhật mỗi 30ms
+        const increment = 100 / (3000 / intervalTime);
+
+        const loadingTimer = setInterval(() => {
+            currentPercent += increment;
+            if (currentPercent >= 100) {
+                currentPercent = 100;
+                clearInterval(loadingTimer);
+                progressBarFill.style.width = '100%';
+                progressText.textContent = '100%';
+                
+                // Sau khi đạt 100%, hiển thị kết quả phân tích của AI
+                setTimeout(() => {
+                    loadingView.style.display = 'none';
+                    processAI(p, b);
+                }, 200);
+            } else {
+                let rounded = Math.floor(currentPercent);
+                progressBarFill.style.width = rounded + '%';
+                progressText.textContent = rounded + '%';
+            }
+        }, intervalTime);
+    }
+
+    function processAI(p, b) {
+        let winnerCode = 'T';
+        let winnerText = "Hòa (Tie)";
+        let winnerClass = "text-t";
+
+        if (p > b) {
+            winnerCode = 'P';
+            winnerText = "Player (P)";
+            winnerClass = "text-p";
+        } else if (b > p) {
+            winnerCode = 'B';
+            winnerText = "Banker (B)";
+            winnerClass = "text-b";
+        }
+
+        let margin = Math.abs(p - b);
+        roundResult.innerHTML = `Vừa ra: <strong class="${winnerClass}">${winnerText}</strong> (Cách biệt điểm: ${margin}đ)`;
+
+        globalHistory.push(winnerCode);
+        if (globalHistory.length > 15) globalHistory.shift();
+
+        updateLiveRoad();
+
+        let reversals = 0;
+        for (let i = globalHistory.length - 1; i > 0; i--) {
+            if (globalHistory[i] !== globalHistory[i-1] && globalHistory[i] !== 'T' && globalHistory[i-1] !== 'T') {
+                reversals++;
+            }
+        }
+        let isCuttingTable = reversals >= 3; 
+        tableTrendBanner.textContent = isCuttingTable ? "⚡ NHỊP BÀN: ĐANG ĐẢO CHIỀU (BẺ CẦU)" : "⚡ NHỊP BÀN: ĐANG BỆT ỔN ĐỊNH (THEO CẦU)";
+
+        let lastReal = winnerCode === 'T' ? (globalHistory[globalHistory.length - 2] || 'P') : winnerCode;
+        let opposite = lastReal === 'P' ? 'B' : 'P';
+
+        let mainBias = isCuttingTable ? opposite : lastReal;
+        let dissentingBias = mainBias === 'P' ? 'B' : 'P';
+
+        const aiList = [
+            { name: "ChatGPT (Chủ lực 1)", bias: mainBias, rate: 95 },
+            { name: "Gemini (Chủ lực 2)", bias: mainBias, rate: 92 },
+            { name: "DeepSeek (Nhiễu / Trái chiều)", bias: dissentingBias, rate: 35 }
+        ];
+
+        aiGridContainer.innerHTML = '';
+        aiList.forEach(ai => {
+            let choiceText = ai.bias === 'P' ? 'PLAYER (XANH)' : 'BANKER (ĐỎ)';
+            let badgeClass = ai.rate < 50 ? 'bg-low-badge' : (ai.bias === 'P' ? 'bg-p-badge' : 'bg-b-badge');
+
+            const card = document.createElement('div');
+            card.className = 'ai-card';
+            card.innerHTML = `
+                <span class="ai-name">${ai.name}</span>
+                <span class="ai-choice ${badgeClass}">${choiceText} (${ai.rate}%)</span>
+            `;
+            aiGridContainer.appendChild(card);
+        });
+
+        contentView.style.display = 'block';
+        predictBtn.disabled = false;
+        
+        pInput.value = '';
+        bInput.value = '';
+        pInput.focus();
+    }
+
+    function syncActualResult(actualCode) {
+        playKeyClickSound();
+        if (globalHistory.length > 0) {
+            globalHistory[globalHistory.length - 1] = actualCode;
+        }
+        updateLiveRoad();
+        resultBox.style.display = 'none';
+        pInput.focus();
+    }
+
+    predictBtn.addEventListener('click', startPrediction);
+
+    bInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') startPrediction();
+    });
+    pInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') bInput.focus();
+    });
+    document.getElementById('keyInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') verifyKey();
+    });
+</script>
+
+</body>
+</html>
